@@ -43,10 +43,17 @@ val table = sqlContext.bigQueryTable("bigquery-public-data:samples.shakespeare")
 val df = sqlContext.bigQuerySelect(
   "SELECT word, word_count FROM [bigquery-public-data:samples.shakespeare]")
 
-  // Save data to a table
+// Save data to a table
 df.saveAsBigQueryTable("my-project:my_dataset.my_table")
 ```
 
+If you'd like to write nested records to BigQuery, be sure to specify an Avro Namespace.
+BigQuery is unable to load Avro Namespaces with a leading dot (`.nestedColumn`) on nested records.
+
+```scala
+// BigQuery is able to load fields with namespace 'myNamespace.nestedColumn'
+df.saveAsBigQueryTable("my-project:my_dataset.my_table", tmpWriteOptions = Map("recordNamespace" -> "myNamespace"))
+```
 # License
 
 Copyright 2016 Spotify AB.
