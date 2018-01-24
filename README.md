@@ -54,6 +54,10 @@ BigQuery is unable to load Avro Namespaces with a leading dot (`.nestedColumn`) 
 // BigQuery is able to load fields with namespace 'myNamespace.nestedColumn'
 df.saveAsBigQueryTable("my-project:my_dataset.my_table", tmpWriteOptions = Map("recordNamespace" -> "myNamespace"))
 ```
+See also
+[Loading Avro Data from Google Cloud Storage](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro)
+for data type mappings and limitations. For example loading arrays of arrays is not supported.
+
 # License
 
 Copyright 2016 Spotify AB.
